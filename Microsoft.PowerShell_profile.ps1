@@ -1,25 +1,32 @@
+Function gotw { echo "Indo para o TW" && Set-Location -Path ~/source/repos/mxp/totalweb }
+
+Function mxptools { echo "Indo para o mxp-tools" && Set-Location -Path ~/source/repos/mxp/totalweb/ferramentas/mxp-tools }
+
+Function dumps { echo "Indo para dumps" && Set-Location -Path C:\Oracle19c\dumps\ }
+
+Function LiqUp { liquibase update }
+
+Function twup { gotw && git pull && liqup }
+
+Function src { echo "Indo para repos" && cd ~/source/repos }
+
+Function mxp { src && echo "Indo para MXP" && cd mxp }
+
 Import-Module posh-git
-Import-Module oh-my-posh
-Set-PoshPrompt -Theme agnoster #Material #negligible #agnosterplus
+Import-Module -Name Terminal-Icons
 
-#Invoke-Expression (&starship init powershell)
+# Carrega configurações do prompt
+oh-my-posh init pwsh | Invoke-Expression
 
-# fix encodings
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-$Env:LESSCHARSET="utf-8"
+# Navegação com autocomplete
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
-# Alias
-Function Set-Location-TW {Set-Location -Path C:\Users\rodol\Documents\maxiprod\totalweb\}
-Set-Alias -Name tw -Value Set-Location-TW
+Set-PSReadLineOption -PredictionSource History
 
-Function Set-Location-mxp-tools {Set-Location -Path C:\Users\rodol\Documents\maxiprod\totalweb\ferramentas\mxp-tools\}
-Set-Alias -Name mxptools -Value Set-Location-mxp-tools
+# Adaptando comandos do teclado
+Set-Alias vim nvim
+Set-Alias g git
 
-Function Set-Location-dumps {Set-Location -Path C:\Oracle18c\dumps\}
-Set-Alias -Name dumps -Value Set-Location-dumps
-
-Function Set-Location-alura { Set-Location -Path c:\Users\rodol\Documents\alura\}
-Set-Alias -Name alura -Value Set-Location-alura
-
-Function Set-Location-Maxiprod { Set-Location -Path C:\Users\rodol\Documents\maxiprod\ }
-Set-Alias -Name mxp -Value Set-Location-Maxiprod
+oh-my-posh init pwsh --config '~\AppData\Local\Programs\oh-my-posh\themes\star.omp.json' | Invoke-Expression
