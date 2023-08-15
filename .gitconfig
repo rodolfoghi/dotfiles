@@ -3,7 +3,6 @@
 [core]
 	autocrlf = true
 	editor = nvim
-	sshCommand = \"C:/Windows/System32/OpenSSH/ssh.exe\"
 [rebase]
 	autoStash = true
 	autosquash = false
