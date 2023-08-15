@@ -1,0 +1,36 @@
+[pull]
+	rebase = true
+[core]
+	autocrlf = true
+	editor = nvim
+	sshCommand = \"C:/Windows/System32/OpenSSH/ssh.exe\"
+[rebase]
+	autoStash = true
+	autosquash = false
+	updateRefs = false
+[alias]
+	co = checkout
+	ci = commit
+	b = branch
+	rb = rebase
+	cp = cherry-pick
+	s = status
+	d = diff
+	dc = diff --cached
+	l = log --date=relative
+	ls = log --pretty=format:\"%C(green)%h|%ad %C(red)%d %C(reset)%s %C(yellow)[%cn]\" --decorate --date=relative
+	ll = ls --numstat
+	wip = "!f(){ git add . && git push -m \\"WIP\\" };f && exit;"
+	last = ll -1
+	pp = !git pull && git push
+[user]
+	name = Rodolfo Ghiggi
+[init]
+	defaultBranch = main
+[fetch]
+	prune = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
