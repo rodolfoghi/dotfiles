@@ -50,10 +50,13 @@ call plug#begin("~/.vim/plugged")
 " A really good theme for Neovim
 Plug 'dracula/vim'
 
+" An easy way for commenting outlines.
+Plug 'preservim/nerdcommenter'
+
 call plug#end()
 
 " set theme
-if v:version < 802
-    packadd! dracula
-endif
 colorscheme dracula
+
+" set mapleader
+let g:mapleader = ' '
