@@ -43,3 +43,17 @@ set cursorline
 
 " Speed up scrolling in Vim
 set ttyfast
+
+" Plugin section
+call plug#begin("~/.vim/plugged")
+
+" A really good theme for Neovim
+Plug 'dracula/vim'
+
+call plug#end()
+
+" set theme
+if v:version < 802
+    packadd! dracula
+endif
+colorscheme dracula
